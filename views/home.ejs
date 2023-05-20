@@ -7,7 +7,7 @@
     
     <% postsContent.forEach(function(obj){ %>
         <h3><%=obj.text%></h3>
-        <p><%=obj.post%></p>
+        <p><%=obj.post.substring(0,100)%> ... <a href="/posts/<%=obj.text%>">Read More </a></p>
     <% }); %>
     
 

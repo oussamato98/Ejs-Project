@@ -3,12 +3,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const { functions } = require("lodash");
+const _ = require('lodash');
+
 const posts = [
+
   Obj = {
-    text : "Test1" ,
-    post : "lkdkdkdkldkldkldlkdlk"
+    text : "Another Test" ,
+    post : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Cursus euismod quis viverra nibh cras pulvinar mattis nunc sed. Aliquam etiam erat velit scelerisque in dictum non consectetur. Ridiculus mus mauris vitae ultricies leo integer malesuada nunc. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Tincidunt vitae semper quis lectus nulla at. Ultrices dui sapien eget mi proin sed libero enim sed. Risus sed vulputate odio ut. Neque sodales ut etiam sit. Arcu non sodales neque sodales ut etiam sit amet nisl. Ornare suspendisse sed nisi lacus sed. Egestas purus viverra accumsan in nisl nisi scelerisque eu ultrices. Faucibus purus in massa tempor nec feugiat nisl pretium fusce. Enim tortor at auctor urna. A diam maecenas sed enim."
   }
+
 ];
 
 const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
@@ -23,8 +26,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 app.get("/",function(req,res){
-  //console.log(posts);
+
+
+
   res.render("home",{ homeContent : homeStartingContent , postsContent : posts});
+
 })
 
 app.get("/about",function(req,res){
@@ -59,12 +65,18 @@ app.post("/compose",function(req,res){
 
 app.get("/posts/:value",function(req,res){
 
-/*     posts.forEach(function(element){
-    console.log(element); }); */
-  let value = req.params.value ;
+
+  let value = _.lowerCase(req.params.value );
+
+  
+  
   posts.forEach(function(element){
-    if(element.text===value){
-      console.log("match");
+
+
+    let elementText = _.lowerCase(element.text);
+  
+    if(elementText===value){
+      res.render("post",{textValue : element.text , postValue : element.post });
     }
     else{
       console.log("dont match")
