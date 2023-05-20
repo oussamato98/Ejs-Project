@@ -1,6 +1,17 @@
 <%-include('partials/header'); -%>
 
-<h1>Home</h1>
-<p><%=homeContent%></p>
 
-<%-include('partials/footer'); -%>
+
+    <h1>Home</h1>
+    <p><%=homeContent%></p>
+    
+    <% postsContent.forEach(function(obj){ %>
+        <h3><%=obj.text%></h3>
+        <p><%=obj.post%></p>
+    <% }); %>
+    
+
+
+
+
+<%-include('partials/footer'); -%> 
